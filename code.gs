@@ -28,7 +28,7 @@ function onSubmit(event){
     let dapp = DriveApp;
     let doc = DocumentApp.create('Request of creation - ' + nom_prov).addViewer(recipient);
     let body = doc.getBody();
-    let id = DriveApp.getFilesByName('Request of creation - ' + nom_prov).next().getId();
+    let id = dapp.getFilesByName('Request of creation - ' + nom_prov).next().getId();
     body.insertParagraph(
           0,
           doc.getName()
@@ -37,7 +37,7 @@ function onSubmit(event){
         );
 
     let table = body.appendTable(rowsData);
-    let docFile = DriveApp.getFileById(id);
+    let docFile = dapp.getFileById(id);
     table.getRow(0).editAsText().setBold(true);
 
     dapp.getFoldersByName('FOLDER').next().addFile(docFile);
